@@ -12,6 +12,9 @@ sudo keylime_verifier
 sudo keylime_registrar
 ```
 Start the TPM emulator - https://github.com/keylime/tpm4720-keylime
+
+`/usr/local/bin/tpm_serverd`
+
 ` sudo keylime_agent`
 
 ```sudo /usr/local/bin/tpm_serverd ```
