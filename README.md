@@ -60,3 +60,23 @@ Runtime integrity management with IMA monitors whether files have been malicious
 keylime/keylime/create_whitelist.sh
 
 whitelist is created base on the `initramfs` file system however if the excludes file is left empty, all unintended files will be measured for runtime integrity
+
+First need to check availability of tpm
+`tpm2_getrandom 8`
+use the createwhitelist script from keylime repository `keylime/keylime/create_whitelist.sh`
+ `./create_whitelist.sh ~/whitelist.txt sha1sum`
+ An ima policy is then created in `etc/ima/ima-policy`
+ On reboot IMA populates `/sys/kernel/security/ima/ascii_runtime_measurements`
+
+ Since we are using a tpm emulator `ima_stub_service` is required. It is installed by
+ ```
+ ima_stub_service/./installer.sh
+ systemctl enable tpm_emulator 
+ systemctl start tpm_emulator
+ ```
+ 
+  The `keylime_verifier keylime_registrar keylime_agent` are started
+ `keylime_tenant -v 127.0.0.1 -t 127.0.0.1 -f /root/excludes.txt --uuid D432FBB3-D2F1-4A97-9EF7-75BD81C00000 --whitelist /root/whitelistt.txt --exclude /root/excludes.txt -c update`
+
+If an agent tries to run anything that is not in the white list, the agent fails and an error message is generated.
+![Screenshot](whitelispng)
