@@ -53,3 +53,10 @@ Encrypted data is provisioned to an node- `keylime_agent`and can be used to boot
 The provisioning successfully happpens and decrypted files can be seen in the directory `/var/lib/keylime/secure/unzipped` containing the certificates and the files. 
 
  
+
+### IMA Whitelist runtime integrity monitoring
+
+Runtime integrity management with IMA monitors whether files have been maliciously changed remotely. The IMA- measurementts are hosted on TPM's platform Configuration Registers(PCR) which add a layer of secuity as they can not be attacked without being detected. This is applicable with the hardware TPM and for this project the software TPM emulator was used which doesnot enforce the same security measures but can still monitor the system's runtime integrity
+keylime/keylime/create_whitelist.sh
+
+whitelist is created base on the `initramfs` file system however if the excludes file is left empty, all unintended files will be measured for runtime integrity
