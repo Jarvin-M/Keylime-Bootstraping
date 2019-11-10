@@ -18,10 +18,11 @@ Initialize Start the TPM emulator - https://github.com/keylime/tpm4720-keylime
 /usr/local/bin/tpm_serverd
 ``
 Check if tpm is running 
-`dmesg | grep -i tpm
+```
+dmesg | grep -i tpm
 sudo find /sys -name tpm0
 export TPM2TOOLS_TCTI="mssim:port=2321"
-`
+```
 
 ```
 sudo keylime_verifier
