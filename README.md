@@ -40,6 +40,7 @@ Create plaintext file filetosend.txt
 
 Encrypted data is provisioned to an node- `keylime_agent`and can be used to bootstrap a system. Files that need to be sent to a cloud agent `keylime_agent` are bundled together and sent to the agent together with a user key needed to decrypt the files. 
 ### Single file encryption
+filetosend.txt  is a single file that the tenant wants to send to the agent. This could easily be a hash key or any other 
 `sudo keylime_tenant -c update -t 127.0.0.1 -v 127.0.0.1 -u D432FBB3-D2F1-4A97-9EF7-75BD81C00000 -f filetosend.txt` 
 
 ### Certificate mode
